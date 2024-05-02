@@ -1,4 +1,17 @@
-﻿from sklearn.model_selection import train_test_split  # implementing train-test-split
+﻿# -*- coding: utf-8 -*-
+"""
+
+@author: srpv
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
+
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
+"""
+# libraries to import
+from sklearn.model_selection import train_test_split  # implementing train-test-split
 import numpy as np
 import pandas as pd
 from mpl_toolkits.mplot3d import Axes3D
@@ -29,6 +42,16 @@ windowsize = 5000
 
 
 def dataprocessing(df):
+    """
+    Preprocesses the given dataframe by standardizing the values of each column.
+
+    Args:
+        df (pandas.DataFrame): The input dataframe.
+
+    Returns:
+        pandas.DataFrame: The preprocessed dataframe with standardized values.
+    """
+
     database = df
     print(database.shape)
     database = database.apply(lambda x: (x - np.mean(x))/np.std(x), axis=1)
@@ -37,6 +60,18 @@ def dataprocessing(df):
 
 
 def data(case, exp):
+    """
+    Process the data for a given case and experiment.
+
+    Args:
+        case (int): The case number.
+        exp (int): The experiment number.
+
+    Returns:
+        tuple: A tuple containing the processed rawspace data and the classspace data.
+            - rawspace (numpy.ndarray): The processed rawspace data.
+            - classspace (numpy.ndarray): The classspace data.
+    """
 
     rawfile = str(case)+'-'+str(exp)+'.npy'
     classfile = 'Classlabel_'+str(case)+'-'+str(exp)+'.npy'

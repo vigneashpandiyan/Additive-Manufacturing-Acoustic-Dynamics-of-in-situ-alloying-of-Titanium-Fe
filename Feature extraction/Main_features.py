@@ -1,9 +1,16 @@
 ﻿# -*- coding: utf-8 -*-
 """
-Created on Fri Aug  4 17:18:58 2023
 
 @author: srpv
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
+
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
 """
+# libraries to import
 import os
 import numpy as np
 from Utils_Featureextraction import *
@@ -26,6 +33,18 @@ path = r'C:\Users\srpv\Desktop\Git\Additive-Manufacturing-Acoustic-Dynamics-of-i
 
 
 def Time_frequency_feature(Materials, sample_rate, band_size, peaks_to_count):
+    """
+    This function calculates the time-frequency features of the given materials.
+
+    Parameters:
+    Materials (str): The name of the materials.
+    sample_rate (int): The sample rate of the data.
+    band_size (int): The size of the frequency bands.
+    peaks_to_count (int): The number of peaks to count.
+
+    Returns:
+    Feature_vectors (numpy.ndarray): The calculated time-frequency feature vectors.
+    """
 
     path_ = str(Materials)+'_'+'Rawspace'+'.npy'
     path_ = os.path.join(path, path_)

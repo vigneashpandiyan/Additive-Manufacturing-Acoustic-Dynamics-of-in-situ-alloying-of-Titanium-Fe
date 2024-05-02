@@ -1,4 +1,17 @@
-﻿import numpy as np
+﻿# -*- coding: utf-8 -*-
+"""
+
+@author: srpv
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
+
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
+"""
+# libraries to import
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import pywt
@@ -112,7 +125,7 @@ def function(val):
 # %%
 
 
-def myfunction(data_new):
+def spectro(data_new):
     columnsdata = data_new.transpose()
     columns = np.atleast_2d(columnsdata).shape[1]
     featurelist = []
@@ -151,7 +164,7 @@ for Materials in M:
     path_ = str(Materials)+'_'+'Rawspace'+'.npy'
     path_ = os.path.join(path, path_)
     data = np.load(path_).astype(np.float64)
-    featurelist = myfunction(data)
+    featurelist = spectro(data)
     Featurespace = np.asarray(featurelist)
     Featurespace = Featurespace.astype(np.float64)
 

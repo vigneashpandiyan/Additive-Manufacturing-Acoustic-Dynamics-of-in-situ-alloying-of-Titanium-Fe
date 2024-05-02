@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Aug 29 23:08:34 2021
 
 @author: srpv
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
+
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
 """
+# libraries to import
 import random
 from matplotlib import cm
 import pywt
@@ -25,10 +32,17 @@ import matplotlib.pyplot as mpl
 from Utils import *
 mpl.rcParams['agg.path.chunksize'] = 1000000
 
-# %% Values to be added
-
 
 def path_leaf(path):
+    """
+    Extracts the file name from a given path.
+
+    Args:
+        path (str): The path from which to extract the file name.
+
+    Returns:
+        str: The file name extracted from the path.
+    """
     head, tail = ntpath.split(path)
     return tail
     # return tail or ntpath.basename(head)
@@ -36,8 +50,9 @@ def path_leaf(path):
 # %%
 
 
+# path to the data
 path = r'C:\Users\srpv\Desktop\Git\Additive-Manufacturing-Acoustic-Dynamics-of-in-situ-alloying-of-Titanium-Fe\ML classifier\Crack dynamics\Data\KM_20_Ti64_6Fe'
-sample_rate = 1500000
+sample_rate = 1500000  # sample rate of the data
 
 isDirectory = os.path.isdir(path)
 
@@ -62,8 +77,8 @@ if isDirectory:
         data_file_name = A[0]
         print(data_file_name)
 
+        # Create a folder to save the data
         folder_created = os.path.join(total_path, data_file_name)
-
         print(folder_created)
         try:
             os.makedirs(folder_created, exist_ok=True)
@@ -89,8 +104,8 @@ if isDirectory:
         dt = 1/sample_rate
         time = np.arange(0, N) * dt + t0
 
+        # Plot the raw data
         uniq = str(random.randint(0, 9999))
-
         plt.rcParams.update(plt.rcParamsDefault)
         fig = plt.figure(figsize=(10, 6), dpi=800)
         fig, ((ax1, ax2)) = plt.subplots(2, 1)
@@ -108,6 +123,7 @@ if isDirectory:
         ax2.set_ylabel('Voltage (V)')
         # ax2.set_xlim(0,0.3)
 
+        # Plot the raw data
         for ax in fig.get_axes():
             ax.label_outer()
         # plt.xlim((0, 40e5))
@@ -119,8 +135,8 @@ if isDirectory:
         plt.savefig(os.path.join(folder_created, graph_2), bbox_inches='tight', dpi=200)
         plt.show()
 
-        data1_ = data1[240000:320000]
-        data2_ = data2[240000:320000]
+        data1_ = data1[240000:320000]  # truncating from whole data
+        data2_ = data2[240000:320000]  # truncating from whole data
         length = len(data1_)
         N = length
         t0 = 0
@@ -155,4 +171,5 @@ if isDirectory:
         plt.savefig(os.path.join(folder_created, graph_2), bbox_inches='tight', dpi=200)
         plt.show()
 
+        # Plot the spectrogram
         specgram3d(data_file_name, uniq, data2_, sample_rate, time_, folder_created)

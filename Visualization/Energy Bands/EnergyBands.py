@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Aug  5 20:55:13 2023
 
 @author: srpv
-"""
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
+"""
+# libraries to import
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

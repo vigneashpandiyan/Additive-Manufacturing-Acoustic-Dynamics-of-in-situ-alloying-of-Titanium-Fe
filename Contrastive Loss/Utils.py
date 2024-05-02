@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Qualify-As-You-Go: Sensor Fusion of Optical and Acoustic Signatures with Contrastive Deep Learning for Multi-Material Composition Monitoring in Laser Powder Bed Fusion Process"
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
@@ -22,6 +22,20 @@ from matplotlib import animation
 
 
 def plot_function(Exptype, folder_created, Training_loss, Training_loss_mean, Training_loss_std, running_loss):
+    """
+    Plot and save training loss curves.
+
+    Inputs:
+    - Exptype: A string representing the experiment type.
+    - folder_created: A string representing the path to the folder where the plots will be saved.
+    - Training_loss: A list of training loss values.
+    - Training_loss_mean: A list of mean training loss values.
+    - Training_loss_std: A list of standard deviation of training loss values.
+    - running_loss: A list of running loss values.
+
+    Outputs:
+    None
+    """
     Training_loss = np.asarray(Training_loss)
     Training_lossfile = Exptype+'_Training_loss.npy'
     Training_lossfile = os.path.join(folder_created, Training_lossfile)
@@ -60,11 +74,30 @@ def plot_function(Exptype, folder_created, Training_loss, Training_loss_mean, Tr
 
 
 def init_weights(m):
+    """
+    Initializes the weights of a convolutional layer using the Kaiming normal initialization.
+
+    Args:
+        m (nn.Conv1d): The convolutional layer to initialize.
+
+    Returns:
+        None
+    """
     if isinstance(m, nn.Conv1d):
         torch.nn.init.kaiming_normal_(m.weight)
 
 
 def count_parameters(model):
+    """
+    Counts the number of trainable parameters in a given model.
+
+    Args:
+        model (torch.nn.Module): The model for which to count the parameters.
+
+    Returns:
+        int: The total number of trainable parameters in the model.
+    """
+
     table = PrettyTable(["Modules", "Parameters"])
     total_params = 0
     for name, parameter in model.named_parameters():
@@ -83,6 +116,21 @@ color = ['cyan', 'orange', 'purple', 'blue', 'green', 'red']
 
 
 def plot_embeddings(embeddings, targets, graph_name_2D, classes, xlim=None, ylim=None):
+    """
+    Plots the embeddings in a 2D graph.
+
+    Args:
+        embeddings (numpy.ndarray): The embeddings to be plotted.
+        targets (numpy.ndarray): The target labels for each embedding.
+        graph_name_2D (str): The name of the graph file to be saved.
+        classes (list): The list of class labels.
+        xlim (tuple, optional): The x-axis limits of the graph. Defaults to None.
+        ylim (tuple, optional): The y-axis limits of the graph. Defaults to None.
+
+    Returns:
+        None
+    """
+
     plt.figure(figsize=(7, 5))
     count = 0
     for i in np.unique(targets):
@@ -104,6 +152,22 @@ def plot_embeddings(embeddings, targets, graph_name_2D, classes, xlim=None, ylim
 
 
 def Three_embeddings(embeddings, targets, graph_name, class_names, ang, xlim=None, ylim=None):
+    """
+    Plot the feature space distribution of three-dimensional embeddings.
+
+    Args:
+        embeddings (numpy.ndarray): The three-dimensional embeddings.
+        targets (numpy.ndarray): The target labels for each embedding.
+        graph_name (str): The name of the graph file to be saved.
+        class_names (list): The list of class names.
+        ang (float): The azimuth angle for the 3D plot.
+        xlim (tuple, optional): The limits for the x-axis. Defaults to None.
+        ylim (tuple, optional): The limits for the y-axis. Defaults to None.
+
+    Returns:
+        tuple: A tuple containing the matplotlib Axes3D object and the matplotlib Figure object.
+    """
+
     group = targets
 
     df2 = pd.DataFrame(group)
@@ -185,6 +249,12 @@ def Three_embeddings(embeddings, targets, graph_name, class_names, ang, xlim=Non
 
 
 def latent_animation(class_names, folder_created, train_results, train_labels, test_results, test_labels):
+    # Code for creating animations of 3D feature space distribution
+    # Input: class_names (list), folder_created (str), train_results (numpy array), train_labels (numpy array), test_results (numpy array), test_labels (numpy array)
+    # Output: None
+
+    # Code for creating animations goes here
+
     graph_name = os.path.join(folder_created, 'Training_Feature_3D.png')
     ax, fig = Three_embeddings(train_results, train_labels, graph_name, class_names, ang=35)
     gif1_name = os.path.join(folder_created, 'Training_Feature_3D.gif')

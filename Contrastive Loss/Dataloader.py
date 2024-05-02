@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Qualify-As-You-Go: Sensor Fusion of Optical and Acoustic Signatures with Contrastive Deep Learning for Multi-Material Composition Monitoring in Laser Powder Bed Fusion Process"
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
@@ -22,6 +22,23 @@ import matplotlib.pyplot as plt
 
 
 class contraster_dataset(Dataset):
+
+    """
+    Dataset class for contrastive loss.
+
+    Args:
+        df (pandas.DataFrame): The input dataframe containing image data and labels.
+        train (bool): Indicates whether the dataset is for training or not.
+        transform (callable, optional): Optional transform to be applied on a sample.
+
+    Returns:
+        tuple: A tuple containing the anchor image, positive image, anchor label, and label.
+            - anchor_img (numpy.ndarray): The anchor image.
+            - positive_img (numpy.ndarray): The positive image.
+            - anchor_label (int): The anchor label.
+            - label (int): The label.
+    """
+
     def __init__(self, df, train, transform=None):
         self.is_train = train
         self.transform = transform
@@ -82,6 +99,15 @@ class contraster_dataset(Dataset):
 
 
 def dataprocessing(df):
+    """
+    Preprocesses the input dataframe by standardizing its values.
+
+    Args:
+        df (pandas.DataFrame): The input dataframe.
+
+    Returns:
+        pandas.DataFrame: The preprocessed dataframe with standardized values.
+    """
     database = df
     print(database.shape)
     database = database.apply(lambda x: (x - np.mean(x))/np.std(x), axis=1)
@@ -90,6 +116,17 @@ def dataprocessing(df):
 
 
 def data_extract(datapath, Exptype):
+    """
+    Extracts data from the given datapath based on the experiment type.
+
+    Parameters:
+    datapath (str): The path to the data directory.
+    Exptype (str): The experiment type.
+
+    Returns:
+    train_df (DataFrame): The training data as a pandas DataFrame.
+    test_df (DataFrame): The testing data as a pandas DataFrame.
+    """
     classfile = Exptype+'_Class_label.npy'
     classfile = os.path.join(datapath, classfile)
     rawfile = Exptype+'_Rawspace.npy'
@@ -115,6 +152,18 @@ def data_extract(datapath, Exptype):
 
 
 def data_plot(datapath, Exptype, folder_created):
+    """
+    Plots the data for visualization.
+
+    Args:
+        datapath (str): The path to the data files.
+        Exptype (str): The experiment type.
+        folder_created (str): The path to the folder where the graph will be saved.
+
+    Returns:
+        None
+    """
+
     classfile = Exptype+'_Class_label.npy'
     classfile = os.path.join(datapath, classfile)
     rawfile = Exptype+'_Rawspace.npy'
@@ -162,6 +211,21 @@ def data_plot(datapath, Exptype, folder_created):
 
 
 def plot_time_series(data, class_name, ax, colour, i, n_steps=10):
+    """
+    Plots a time series data with rolling mean and standard deviation.
+
+    Args:
+        data (list or numpy array): The time series data to be plotted.
+        class_name (str): The name of the class.
+        ax (matplotlib.axes.Axes): The axes object to plot the data on.
+        colour (str): The color of the plot.
+        i (int): The index of the plot.
+        n_steps (int, optional): The number of steps for rolling mean and standard deviation. Defaults to 10.
+
+    Returns:
+        None
+    """
+
     time_series_df = pd.DataFrame(data)
 
     smooth_path = time_series_df.rolling(n_steps).mean()
@@ -184,6 +248,18 @@ def plot_time_series(data, class_name, ax, colour, i, n_steps=10):
 
 
 def torch_loader(batch_size, train_df, test_df):
+    """
+    Loads and returns the train and test data loaders for the contrastive loss model.
+
+    Parameters:
+        batch_size (int): The batch size for the data loaders.
+        train_df (pandas.DataFrame): The training data as a pandas DataFrame.
+        test_df (pandas.DataFrame): The test data as a pandas DataFrame.
+
+    Returns:
+        train_loader (torch.utils.data.DataLoader): The data loader for the training data.
+        test_loader (torch.utils.data.DataLoader): The data loader for the test data.
+    """
     train_ds = contraster_dataset(train_df,
                                   train=True,
                                   transform=transforms.Compose([

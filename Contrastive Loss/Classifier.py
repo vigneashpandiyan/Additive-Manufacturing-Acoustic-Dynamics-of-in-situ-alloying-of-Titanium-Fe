@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Qualify-As-You-Go: Sensor Fusion of Optical and Acoustic Signatures with Contrastive Deep Learning for Multi-Material Composition Monitoring in Laser Powder Bed Fusion Process"
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
@@ -31,7 +31,6 @@ from sklearn.model_selection import cross_val_score
 from IPython.display import Image
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split  # implementing train-test-split
-from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.neural_network import MLPClassifier
 from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
@@ -43,6 +42,17 @@ import os
 
 
 def classifier_linear(Exptype, folder_created):
+    """
+    This function performs linear classification using logistic regression.
+
+    Parameters:
+        Exptype (str): The type of experiment.
+        folder_created (str): The path to the folder where the embeddings and labels are stored.
+
+    Returns:
+        None
+    """
+
     train_embeddings = Exptype+'_train_embeddings'+'_' + '.npy'
     train_embeddings = os.path.join(folder_created, train_embeddings)
 
@@ -64,6 +74,19 @@ def classifier_linear(Exptype, folder_created):
 
 
 def LR(X_train, X_test, y_train, y_test, folder_created):
+    """
+    Logistic Regression classifier.
+
+    Args:
+        X_train (array-like): Training data features.
+        X_test (array-like): Test data features.
+        y_train (array-like): Training data labels.
+        y_test (array-like): Test data labels.
+        folder_created (str): Path to the folder where the output files will be saved.
+
+    Returns:
+        tuple: A tuple containing the predicted probabilities and predicted labels.
+    """
 
     model = LogisticRegression(max_iter=1000, random_state=123)
     model.fit(X_train, y_train)

@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Qualify-As-You-Go: Sensor Fusion of Optical and Acoustic Signatures with Contrastive Deep Learning for Multi-Material Composition Monitoring in Laser Powder Bed Fusion Process"
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
@@ -20,6 +20,17 @@ class ContrastiveLoss(nn.Module):
     """
     Contrastive loss
     Takes embeddings of two samples and a target label == 1 if samples are from the same class and label == 0 otherwise
+
+    Args:
+        margin (float): The margin value for the contrastive loss. Default is 1.0.
+
+    Inputs:
+        output1 (Tensor): Embeddings of the first sample. Shape (batch_size, embedding_size)
+        output2 (Tensor): Embeddings of the second sample. Shape (batch_size, embedding_size)
+        target (Tensor): Target labels indicating whether the samples are from the same class or not. Shape (batch_size,)
+
+    Returns:
+        Tensor: The contrastive loss value. Shape (1,)
     """
 
     def __init__(self, margin=1.0):

@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Qualify-As-You-Go: Sensor Fusion of Optical and Acoustic Signatures with Contrastive Deep Learning for Multi-Material Composition Monitoring in Laser Powder Bed Fusion Process"
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
@@ -48,10 +48,10 @@ if device.type == "cuda":
 print('Using device:', device)
 
 # %%
-datapath = r'C:\Users\srpv\Desktop\Git\Additive-Manufacturing-Acoustic-Dynamics-of-in-situ-alloying-of-Titanium-Fe\ML classifier\Data_preprocessing'
+datapath = r'C:\Users\srpv\Desktop\Git\Additive-Manufacturing-Acoustic-Dynamics-of-in-situ-alloying-of-Titanium-Fe\Data_preprocessing'
 embedding_dims = 8
 batch_size = 64
-epochs = 300
+epochs = 5
 
 Datasets = ['CM', 'KM']
 
@@ -78,12 +78,15 @@ for Exptype in Datasets:
         print("Directory already exists....")
 
     # %%
+
+    # Data loading and preprocessing
     data_plot(datapath, Exptype, folder_created)
     train_df, test_df = data_extract(datapath, Exptype)
     train_loader, test_loader = torch_loader(batch_size, train_df, test_df)
 
     # %%
 
+    # Model training
     model = Network(embedding_dims)
     model.apply(init_weights)
     model = torch.jit.script(model).to(device)
@@ -94,12 +97,12 @@ for Exptype in Datasets:
         epochs, train_loader, device, optimizer, model, criterion, Exptype, folder_created)
 
     # %%
-
+    # Plotting the training loss
     plot_function(Exptype, folder_created, Training_loss,
                   Training_loss_mean, Training_loss_std, running_loss)
 
     # %%
-
+    # Saving the model embeddings
     train_results, train_labels = save_train_embeddings(
         device, Exptype, folder_created, train_loader, model)
 
@@ -107,7 +110,7 @@ for Exptype in Datasets:
         device, Exptype, folder_created, test_loader, model)
 
     # %%
-
+    # Plotting the latent space
     graph_name_2D = os.path.join(folder_created, 'Training_Feature_2D.png')
     plot_embeddings(train_results, train_labels, graph_name_2D, class_names)
 
@@ -115,12 +118,14 @@ for Exptype in Datasets:
     plot_embeddings(test_results, test_labels, graph_name_2D, class_names)
 
     # %%
-
+    # Plotting the latent space in 3D
     latent_animation(class_names, folder_created, train_results,
                      train_labels, test_results, test_labels)
 
     # %%
+    # Model parameters
     count_parameters(model)
 
     # %%
+    # Classifier training
     classifier_linear(Exptype, folder_created)

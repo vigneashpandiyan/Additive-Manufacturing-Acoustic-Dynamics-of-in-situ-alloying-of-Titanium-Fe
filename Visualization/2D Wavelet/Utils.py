@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Aug  5 19:18:18 2023
 
 @author: srpv
-"""
+contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
+The codes in this following script will be used for the publication of the following work
+
+"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+@any reuse of this code should be authorized by the first owner, code author
+
+"""
+# libraries to import
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -16,7 +22,17 @@ import os
 
 
 def filter(signal_window, sample_rate):
+    """
+    Applies a low-pass filter to the input signal window.
 
+    Args:
+        signal_window (array-like): The input signal window to be filtered.
+        sample_rate (float): The sample rate of the input signal.
+
+    Returns:
+        array-like: The filtered signal window.
+
+    """
     lowpass = 0.49*sample_rate  # Cut-off frequency of the filter
     lowpass_freq = lowpass / (sample_rate / 2)  # Normalize the frequency
     b, a = signal.butter(5, lowpass_freq, 'low')
@@ -27,6 +43,20 @@ def filter(signal_window, sample_rate):
 
 
 def Wavelet2D(Material, sample_rate, rawspace, classspace, time, total_path):
+    """
+    Perform 2D wavelet analysis on the given data.
+
+    Args:
+        Material (str): The material name.
+        sample_rate (int): The sample rate of the data.
+        rawspace (pd.DataFrame): The raw data.
+        classspace (pd.DataFrame): The class labels.
+        time (np.array): The time values.
+        total_path (str): The path to save the generated plots.
+
+    Returns:
+        None
+    """
 
     classspace.columns = ['Categorical']
     data = pd.concat([rawspace, classspace], axis=1)
