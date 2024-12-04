@@ -5,7 +5,7 @@
 
 # Journal link
 
-[10.1007/s10845-023-02279-x](https://link.springer.com/article/10.1007/s10845-023-02279-x)
+[10.1007/s10845-023-02279-x](https://doi.org/10.1016/j.addma.2024.104562)
 
 # Overview
 
