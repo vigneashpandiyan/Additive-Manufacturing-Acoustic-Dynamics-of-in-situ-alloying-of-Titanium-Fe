@@ -1,5 +1,5 @@
-# Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED_Process-Zone-Imaging
-Real-Time Monitoring and Quality Assurance for Laser-Based Directed Energy Deposition: Integrating Coaxial Imaging and Self-Supervised Deep Learning Framework
+# Acoustic emission signature of martensitic transformation in Laser Powder Bed Fusion of Ti6Al4V-Fe, supported by operando X-ray diffraction
+
 
 ![DED process zone information](https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED-Process-Zone-Imaging/assets/39007209/5b899596-ade5-40dc-bf44-ff77896544bc)
 
@@ -10,21 +10,7 @@ Real-Time Monitoring and Quality Assurance for Laser-Based Directed Energy Depos
 # Overview
 
 
-Artificial Intelligence (AI) has emerged as a promising solution for real-time monitoring of the quality of
-additively manufactured (AM) metallic parts. This study focuses on the Laser-based Directed Energy Deposition (LDED)
-process and utilizes embedded vision systems to capture critical melt pool characteristics for continuous
-monitoring. Two self-learning frameworks based on Convolutional Neural Networks and Transformer architecture
-are applied to process zone images from different DED process regimes, enabling in-situ monitoring without ground
-truth information. The evaluation is based on a dataset of process zone images obtained during the deposition of
-titanium powder (Cp-Ti, grade 1), forming a cube geometry using four laser regimes. By training and evaluating the
-Deep Learning (DL) algorithms using a co-axially mounted CCD camera within the process zone, the down-sampled
-representations of process zone images are effectively used with conventional classifiers for L-DED process
-monitoring. The high classification accuracies achieved validate the feasibility and efficacy of self-learning strategies
-in real-time quality assessment of AM. This study highlights the potential of AI-based monitoring systems and selflearning
-algorithms in quantifying the quality of AM metallic parts during fabrication. The integration of embedded
-vision systems and self-learning algorithms presents a novel contribution, particularly in the context of the L-DED
-process. The findings open avenues for further research and development in AM process monitoring, emphasizing the
-importance of self-supervised in-situ monitoring techniques in ensuring part quality during fabrication.
+This study focuses on investigating Acoustic Emission (AE) monitoring in the Laser Powder Bed Fusion (LPBF) process, using premixed Ti6Al4V-(x wt%) Fe, where x = 0, 3, and 6. By employing a structure-borne AE sensor, we analyze AE data statistically, uncovering notable discrepancies within the 50–750 kHz frequency range. Leveraging Machine Learning (ML) methodologies, we accurately predict composition for particular processing conditions. These fluctuations in AE signals primarily arise from unique microstructural alterations linked to martensitic phase transformation, corroborated by operando synchrotron X-ray diffraction and post-mortem SEM and EBSD analysis. Moreover, cracks are evident at the periphery of the printed parts, stemming from local inadequate heat input during the blending of Ti6Al4V with added Fe powder. These cracks are discerned via AE signals subsequent to the cessation of the laser beam, correlating with the presence of brittle intermetallics at their junction. This study highlights for the first time the potential of AE monitoring in reliably detecting footprints of martensitic transformations during the LPBF process. Additionally, AE is shown to prove valuable for assessing crack formations, particularly in scenarios involving premixed powders and necessitating precise selection of processing parameters, notably at part edges.
 
 ![Graphical abstract(1)](https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED-Process-Zone-Imaging/assets/39007209/0ee15026-dde5-4176-a036-26707a9ada11)
 
@@ -45,25 +31,26 @@ The training of ML algorithms is usually supervised. Given a dataset consisting 
 
 # Code
 ```bash
-git clone https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED_Process-Zone-Imaging
-cd Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED_Process-Zone-Imaging
-python Transformer_Byol.py
-python Main_Byol.py
-python Main_CNN.py
-python Main_Transformer.py
+git clone https://github.com/vigneashpandiyan/Additive-Manufacturing-Acoustic-Dynamics-of-in-situ-alloying-of-Titanium-Fe
+cd Additive-Manufacturing-Acoustic-Dynamics-of-in-situ-alloying-of-Titanium-Fe
+
+python ../Data_preprocessing/Data_prep.py
+python ../Feature extraction/Main_features.py
+python ../Feature extraction/Main_Features PSD.py
+python ../Crack dynamics/Main_Visualize.py
+python ../Contrastive Loss/Main.py
+
 ```
 
 # Citation
 ```
-@article{,
-  title={Real-time monitoring and quality assurance for laser-based directed energy deposition: integrating co-axial imaging and self-supervised deep learning framework},
-  author={Vigneashwara Pandiyan, Di Cui, Roland Axel Richter, Annapaola Parrilli and Marc Leparoux.},
-  journal={Journal of Intelligent Manufacturing},
-  ISSN={1572-8145},
-  DOI={10.1007/s10845-023-02279-x},
-  Date={2023/12/21},
-  year={2023},
-  publisher={Springer}
+@article{esmaeilzadeh2024acoustic,
+  title={Acoustic emission signature of martensitic transformation in Laser Powder Bed Fusion of Ti6Al4V-Fe, supported by operando X-ray diffraction},
+  author={Esmaeilzadeh, Reza and Pandiyan, Vigneashwara and Van Petegem, Steven and Van der Meer, Mathijs and Nasab, Milad Hamidi and de Formanoir, Charlotte and Jhabvala, Jamasp and Navarre, Claire and Schlenger, Lucas and Richter, Roland and others},
+  journal={Additive Manufacturing},
+  pages={104562},
+  year={2024},
+  publisher={Elsevier}
 }
 ```
 
