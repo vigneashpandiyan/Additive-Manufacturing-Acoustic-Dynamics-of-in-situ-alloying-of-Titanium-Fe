@@ -14,7 +14,7 @@ This study focuses on investigating Acoustic Emission (AE) monitoring in the Las
 ![Experimental setup](https://github.com/user-attachments/assets/9ee5e9fa-97bb-4033-b069-ccba22565d0f)
 
 
-# Bootstrap your own latent (BYOL) Learners
+# Experimental procedures
 
 ![Byol](https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED-Process-Zone-Imaging/assets/39007209/12b87183-40e0-43bf-86ed-69e6d2495fe1)
 
