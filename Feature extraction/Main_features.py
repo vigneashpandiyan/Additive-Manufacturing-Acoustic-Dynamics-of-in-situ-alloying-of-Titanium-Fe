@@ -6,7 +6,7 @@ contact: vigneashwara.solairajapandiyan@empa.ch, vigneashpandiyan@gmail.com
 
 The codes in this following script will be used for the publication of the following work
 
-"Exploring Acoustic Emission Monitoring during Laser Powder Bed Fusion of premixed Ti6Al4V-Fe powder: Evidence of martensitic phase transformation supported by operando X-ray diffraction "
+"Acoustic emission signature of martensitic transformation in Laser Powder Bed Fusion of Ti6Al4V-Fe, supported by operando X-ray diffraction "
 @any reuse of this code should be authorized by the first owner, code author
 
 """
