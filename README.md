@@ -1,7 +1,6 @@
 # Acoustic emission signature of martensitic transformation in Laser Powder Bed Fusion of Ti6Al4V-Fe, supported by operando X-ray diffraction
 
-
-![DED process zone information](https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED-Process-Zone-Imaging/assets/39007209/5b899596-ade5-40dc-bf44-ff77896544bc)
+![Abstract](https://github.com/user-attachments/assets/8bc643ea-10ea-4973-b733-9cacfc157627)
 
 # Journal link
 
@@ -26,7 +25,9 @@ The training of ML algorithms is usually supervised. Given a dataset consisting 
 # Results
 
 
-![Figure 13](https://github.com/vigneashpandiyan/Additive-Manufacturing-DED-Manifold-Learning/assets/39007209/ea50b4af-3708-4a40-a03e-fc84675c149a)
+![Crack](https://github.com/user-attachments/assets/4b992c5a-9613-4fb2-a629-65c0719d12d5)
+
+
 
 
 # Code
