@@ -11,7 +11,7 @@
 
 This study focuses on investigating Acoustic Emission (AE) monitoring in the Laser Powder Bed Fusion (LPBF) process, using premixed Ti6Al4V-(x wt%) Fe, where x = 0, 3, and 6. By employing a structure-borne AE sensor, we analyze AE data statistically, uncovering notable discrepancies within the 50–750 kHz frequency range. Leveraging Machine Learning (ML) methodologies, we accurately predict composition for particular processing conditions. These fluctuations in AE signals primarily arise from unique microstructural alterations linked to martensitic phase transformation, corroborated by operando synchrotron X-ray diffraction and post-mortem SEM and EBSD analysis. Moreover, cracks are evident at the periphery of the printed parts, stemming from local inadequate heat input during the blending of Ti6Al4V with added Fe powder. These cracks are discerned via AE signals subsequent to the cessation of the laser beam, correlating with the presence of brittle intermetallics at their junction. This study highlights for the first time the potential of AE monitoring in reliably detecting footprints of martensitic transformations during the LPBF process. Additionally, AE is shown to prove valuable for assessing crack formations, particularly in scenarios involving premixed powders and necessitating precise selection of processing parameters, notably at part edges.
 
-![Graphical abstract(1)](https://github.com/vigneashpandiyan/Additive-Manufacturing-Self-Supervised-Learning-Coaxial-DED-Process-Zone-Imaging/assets/39007209/0ee15026-dde5-4176-a036-26707a9ada11)
+![Experimental setup](https://github.com/user-attachments/assets/9ee5e9fa-97bb-4033-b069-ccba22565d0f)
 
 
 # Bootstrap your own latent (BYOL) Learners
